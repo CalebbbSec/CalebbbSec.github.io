@@ -1,672 +1,638 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abdulhamid Salihu — Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <style>
-    /* ── Hero ── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding-top: 80px;
-      position: relative;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caleb Adelaja | Portfolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0B0F19;
+            --bg-card: #151D30;
+            --primary: #00E676; /* Emerald/Teal accent */
+            --primary-glow: rgba(0, 230, 118, 0.15);
+            --text-main: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --terminal-bg: #070A10;
+        }
 
-    /* doodle decorations */
-    .doodle-star {
-      position: absolute;
-      opacity: 0.22;
-      pointer-events: none;
-    }
-    .doodle-star svg { width: 100%; height: 100%; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
 
-    .hero-avatar-wrap {
-      position: relative;
-      margin-bottom: 28px;
-    }
-    .hero-avatar-ring {
-      position: absolute;
-      inset: -10px;
-      border-radius: 50%;
-      border: 2px dashed var(--gold);
-      opacity: 0.6;
-      animation: spin 20s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    .hero-avatar {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--cream-dark);
-      box-shadow: 0 8px 32px rgba(26,18,8,0.15);
-      position: relative;
-      z-index: 1;
-    }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-    .hero-name {
-      margin-bottom: 10px;
-      min-height: 1.2em;
-    }
-    /* typewriter cursor blink */
-    .typewriter-cursor {
-      display: inline-block;
-      width: 3px;
-      background: var(--coral);
-      margin-left: 2px;
-      animation: blink 0.75s step-end infinite;
-      vertical-align: baseline;
-      height: 0.85em;
-      border-radius: 2px;
-      position: relative;
-      top: 0.05em;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-    .hero-tagline {
-      font-size: 1.1rem;
-      color: var(--warm-gray);
-      margin-bottom: 30px;
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .hero-tagline.visible { opacity: 1; transform: translateY(0); }
-    .hero-tagline strong { color: var(--coral); font-weight: 600; }
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+        .logo {
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
 
-    .hero-contacts {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin-bottom: 28px;
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s;
-    }
-    .hero-contacts.visible { opacity: 1; transform: translateY(0); }
-    .contact-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 8px 16px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 40px;
-      font-size: 0.85rem;
-      color: var(--ink-light);
-      text-decoration: none;
-      transition: all 0.2s;
-      font-weight: 500;
-    }
-    .contact-pill:hover {
-      background: var(--coral);
-      color: #fff;
-      border-color: var(--coral);
-      transform: translateY(-2px);
-    }
-    .contact-pill i { font-size: 0.9rem; }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
 
-    /* ── Projects Section ── */
-    .projects-header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      margin-bottom: 48px;
-    }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 22px;
-    }
-    .project-category-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 36px 28px;
-      text-align: center;
-      text-decoration: none;
-      color: var(--ink);
-      transition: all 0.25s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-      position: relative;
-      overflow: hidden;
-    }
-    .project-category-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent 60%, rgba(232,97,58,0.05));
-      pointer-events: none;
-    }
-    .project-category-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 48px rgba(26,18,8,0.12);
-      border-color: var(--coral);
-    }
-    .category-icon {
-      width: 68px;
-      height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s ease;
-    }
-    .project-category-card:hover .category-icon {
-      transform: rotate(-6deg) scale(1.1);
-    }
-    .category-icon svg { width: 100%; height: 100%; }
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
 
-    .project-category-card h3 {
-      font-size: 1.1rem;
-      color: var(--ink);
-    }
-    .project-category-card p {
-      font-size: 0.85rem;
-      color: var(--warm-gray);
-      line-height: 1.5;
-    }
-    .category-arrow {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--coral);
-      letter-spacing: 0.05em;
-      margin-top: 4px;
-    }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
 
-    /* ── Experience Section ── */
-    .experience-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 36px 40px;
-    }
-    .exp-role {
-      font-family: 'Lora', serif;
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .exp-org {
-      color: var(--coral);
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin-bottom: 20px;
-    }
-    .exp-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .exp-list li {
-      font-size: 0.92rem;
-      color: var(--ink-light);
-      line-height: 1.6;
-      padding-left: 20px;
-      position: relative;
-    }
-    .exp-list li::before {
-      content: '–';
-      position: absolute;
-      left: 0;
-      color: var(--coral);
-      font-weight: 700;
-    }
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 120px 20px 60px 20px;
+        }
 
-    /* ── Academic Section ── */
-    .academic-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 22px;
-    }
-    .academic-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 30px 28px;
-    }
-    .academic-degree {
-      font-family: 'Lora', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .academic-school {
-      color: var(--warm-gray);
-      font-size: 0.85rem;
-      margin-bottom: 12px;
-    }
-    .academic-grade {
-      display: inline-block;
-      background: rgba(201,149,42,0.12);
-      color: var(--gold);
-      font-weight: 700;
-      font-size: 0.82rem;
-      padding: 3px 10px;
-      border-radius: 20px;
-      margin-bottom: 14px;
-    }
-    .academic-awards {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .academic-awards li {
-      font-size: 0.83rem;
-      color: var(--ink-light);
-      padding-left: 18px;
-      position: relative;
-    }
-    .academic-awards li::before {
-      content: '🏆';
-      position: absolute;
-      left: 0;
-      font-size: 0.7rem;
-      top: 2px;
-    }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            align-items: center;
+            width: 100%;
+        }
 
-    /* ── Certificates ── */
-    .certs-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 24px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 36px 40px;
-    }
-    .certs-text h3 {
-      font-size: 1.3rem;
-      margin-bottom: 8px;
-    }
-    .certs-text p {
-      font-size: 0.9rem;
-      color: var(--warm-gray);
-      max-width: 520px;
-    }
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
 
-    /* ── Footer ── */
-    footer {
-      text-align: center;
-      padding: 40px 0;
-      font-size: 0.82rem;
-      color: var(--warm-gray);
-      border-top: 1px solid var(--border);
-    }
-    footer a { color: var(--coral); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+        .hero-text .accent {
+            color: var(--primary);
+            text-shadow: 0 0 15px var(--primary-glow);
+        }
 
-    /* ── Section spacing helpers ── */
-    .section-head {
-      margin-bottom: 40px;
-    }
-    .section-head p {
-      color: var(--warm-gray);
-      font-size: 0.95rem;
-      margin-top: 10px;
-    }
-  </style>
+        .hero-text h2 {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 25px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--primary-glow);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--text-muted);
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Terminal Window Widget */
+        .terminal {
+            background-color: var(--terminal-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background-color: rgba(255, 255, 255, 0.03);
+            padding: 10px 15px;
+            display: flex;
+            gap: 6px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .circle {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .red { background-color: #FF5F56; }
+        .yellow { background-color: #FFBD2E; }
+        .green { background-color: #27C93F; }
+
+        .terminal-body {
+            padding: 20px;
+            color: #A6ACCD;
+        }
+
+        .terminal-line {
+            margin-bottom: 8px;
+        }
+
+        .terminal-input {
+            color: var(--primary);
+        }
+
+        /* Sections General styling */
+        section {
+            padding: 100px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        /* Core Skill Areas Cards */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 35px;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 230, 118, 0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Skills Matrix */
+        .skills-section {
+            background-color: rgba(21, 29, 48, 0.3);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            margin-top: 50px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .skill-category h4 {
+            color: var(--primary);
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            transition: all 0.3s;
+        }
+
+        .tag:hover {
+            background-color: var(--primary-glow);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 230, 118, 0.2);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.1), rgba(11, 15, 25, 0.4));
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .project-icon-large {
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.8;
+        }
+
+        .project-body {
+            padding: 30px;
+            flex-grow: 1;
+        }
+
+        .project-body h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .project-body p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .project-tech span {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            background-color: rgba(0, 230, 118, 0.08);
+            color: var(--primary);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .project-link {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s;
+        }
+
+        .project-link:hover {
+            color: var(--primary);
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            padding-bottom: 140px;
+        }
+
+        .contact-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            padding: 50px 40px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .contact p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-main);
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            background-color: var(--primary);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--primary-glow);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--terminal-bg);
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+            .nav-links {
+                display: none; /* Can be expanded with JS for mobile menu */
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- ───── NAV ───── -->
-  <nav class="site-nav">
-    <div class="container">
-      <a class="nav-logo" href="index.html">Abdulhamid Salihu</a>
-      <ul class="nav-links">
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#academic">Academic</a></li>
-        <li><a href="#certificates">Certificates</a></li>
-      </ul>
-    </div>
-  </nav>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">caleb.sh</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#specialties">Specialties</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-  <!-- ───── HERO ───── -->
-  <section class="hero" id="home">
-    <!-- Decorative doodles -->
-    <div class="doodle-star" style="top:12%;left:6%;width:90px;height:90px;">
-      <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M45 10 Q48 30 65 25 Q50 38 70 45 Q50 52 65 65 Q48 60 45 80 Q42 60 25 65 Q40 52 20 45 Q40 38 25 25 Q42 30 45 10Z" stroke="#E8613A" stroke-width="1.5" fill="none"/>
-      </svg>
-    </div>
-    <div class="doodle-star" style="top:18%;right:8%;width:60px;height:60px;">
-      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="30" cy="30" r="25" stroke="#C9952A" stroke-width="1.2" stroke-dasharray="4 3"/>
-      </svg>
-    </div>
-    <div class="doodle-star" style="bottom:20%;left:10%;width:70px;height:70px;">
-      <svg viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="15" y="15" width="40" height="40" rx="4" stroke="#7A9E7E" stroke-width="1.3" transform="rotate(20 35 35)"/>
-      </svg>
-    </div>
-    <div class="doodle-star" style="bottom:28%;right:6%;width:80px;height:50px;">
-      <svg viewBox="0 0 80 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 25 Q20 5 40 25 Q60 45 75 25" stroke="#C9952A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-      </svg>
-    </div>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-grid">
+            <div class="hero-text">
+                <h1>Hi, I'm <span class="accent">Caleb Adelaja</span></h1>
+                <h2>IT Analyst &amp; Cybersecurity Professional</h2>
+                <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem;">
+                    B.Sc Computer Science graduate specialized in configuring, securing, and maintaining robust IT infrastructure. Combining deep technical expertise in systems security with sharp graphic design principles.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+            
+            <!-- Terminal Widget -->
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="circle red"></div>
+                    <div class="circle yellow"></div>
+                    <div class="circle green"></div>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line"><span class="terminal-input">Caleb@SecLab:~$</span> whoami</div>
+                    <div class="terminal-line" style="color: #fff;">caleb_adelaja</div>
+                    <div class="terminal-line"><span class="terminal-input">Caleb@SecLab:~$</span> cat info.txt</div>
+                    <div class="terminal-line" style="color: #64748B;">
+                        [Degree] B.Sc. Computer Science (Nigeria)<br>
+                        [Focus] Cyber Security, Active Directory, Systems Hardening, IT Infrastructure<br>
+                        [Design] Branding, Vector Layouts & Assets
+                    </div>
+                    <div class="terminal-line"><span class="terminal-input">Caleb@SecLab:~$</span> run security-scan --all</div>
+                    <div class="terminal-line" style="color: var(--primary);">✔ Systems configured &amp; secured. Ready for deployment.</div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <div class="container" style="display:flex;flex-direction:column;align-items:center;">
-      <div class="hero-avatar-wrap">
-        <div class="hero-avatar-ring"></div>
-        <img class="hero-avatar" src="picture.jpg" alt="Abdulhamid Salihu" />
-      </div>
-
-      <h1 class="hero-name" id="heroName"><span class="typewriter-cursor" id="twCursor"></span></h1>
-      <p class="hero-tagline">
-        <strong>Cybersecurity</strong> &nbsp;·&nbsp; <strong>Cloud</strong> &nbsp;·&nbsp; <strong>AI & Prompt Engineering</strong>
-      </p>
-
-      <div class="hero-contacts">
-        <a class="contact-pill" href="https://x.com/abdool_hameed_" target="_blank" rel="noopener">
-          <i class="fab fa-twitter"></i> Twitter
-        </a>
-        <a class="contact-pill" href="https://kizerh.medium.com/" target="_blank" rel="noopener">
-          <i class="fab fa-medium"></i> Medium
-        </a>
-        <a class="contact-pill" href="https://github.com/kizerh" target="_blank" rel="noopener">
-          <i class="fab fa-github"></i> GitHub
-        </a>
-        <a class="contact-pill" href="http://www.linkedin.com/in/salihu-abdulhamid" target="_blank" rel="noopener">
-          <i class="fab fa-linkedin"></i> LinkedIn
-        </a>
-        <a class="contact-pill" href="mailto:abdulhameedi.ah492@gmail.com">
-          <i class="fas fa-envelope"></i> Mail
-        </a>
-      </div>
-    </div>
-
-    <a class="bounce-arrow" href="#projects">
-      <span>Projects</span>
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="6 9 12 15 18 9"/>
-      </svg>
-    </a>
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ───── PROJECTS ───── -->
-  <section id="projects">
-    <div class="container">
-      <div class="projects-header">
-        <span class="section-label">Work</span>
-        <h2>Projects</h2>
-        <p style="color:var(--warm-gray);font-size:0.95rem;margin-top:10px;max-width:540px;">
-          Hands-on work across cybersecurity, cloud infrastructure, AI research, and open-source tooling.
-        </p>
-      </div>
-
-      <div class="projects-grid">
-        <a class="project-category-card" href="cybersecurity-projects/index.html">
-          <div class="category-icon">
-            <!-- hand-drawn shield doodle -->
-            <svg viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M34 8 C34 8 16 14 14 16 C12 18 13 34 16 42 C19 50 28 57 34 60 C40 57 49 50 52 42 C55 34 56 18 54 16 C52 14 34 8 34 8Z" stroke="#E8613A" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
-              <path d="M26 34 L31 39 L43 27" stroke="#E8613A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M18 20 Q20 18 22 19" stroke="#E8613A" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
-            </svg>
-          </div>
-          <h3>Cybersecurity</h3>
-          <p>Penetration testing, IAM architecture, malware detection, and exploit research.</p>
-          <span class="category-arrow">Explore projects →</span>
-        </a>
-
-        <a class="project-category-card" href="cloud-projects/index.html">
-          <div class="category-icon">
-            <!-- hand-drawn cloud doodle -->
-            <svg viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18 44 C12 44 10 38 14 34 C14 28 19 24 25 25 C27 19 33 15 40 17 C47 19 51 26 49 33 C53 33 56 37 54 41 C52 45 47 46 43 45 L20 45 Z" stroke="#7A9E7E" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M28 52 L28 46" stroke="#7A9E7E" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M34 55 L34 46" stroke="#7A9E7E" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M40 52 L40 46" stroke="#7A9E7E" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M14 30 Q12 28 14 26" stroke="#7A9E7E" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
-            </svg>
-          </div>
-          <h3>Cloud</h3>
-          <p>AWS deployments, serverless architectures, VPC design, and monitoring pipelines.</p>
-          <span class="category-arrow">Explore projects →</span>
-        </a>
-
-        <a class="project-category-card" href="prompt-engineering/index.html">
-          <div class="category-icon">
-            <!-- hand-drawn brain/sparkle doodle -->
-            <svg viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M34 14 C28 14 22 19 22 26 C22 30 24 33 22 36 C20 39 17 40 18 44 C19 48 23 50 27 49 C27 52 30 54 34 54 C38 54 41 52 41 49 C45 50 49 48 50 44 C51 40 48 39 46 36 C44 33 46 30 46 26 C46 19 40 14 34 14Z" stroke="#C9952A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M34 14 L34 20" stroke="#C9952A" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M28 32 Q34 28 40 32" stroke="#C9952A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-              <circle cx="29" cy="38" r="2" stroke="#C9952A" stroke-width="1.3" fill="none"/>
-              <circle cx="39" cy="38" r="2" stroke="#C9952A" stroke-width="1.3" fill="none"/>
-              <path d="M56 18 L57 14 L58 18 L62 19 L58 20 L57 24 L56 20 L52 19 Z" stroke="#C9952A" stroke-width="1.2" fill="none" stroke-linejoin="round"/>
-              <path d="M10 48 L11 45 L12 48 L15 49 L12 50 L11 53 L10 50 L7 49 Z" stroke="#C9952A" stroke-width="1.2" fill="none" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3>AI & Prompt Engineering</h3>
-          <p>Custom prompts, LLM workflows, and adversarial AI security research.</p>
-          <span class="category-arrow">Explore projects →</span>
-        </a>
-
-        <a class="project-category-card" href="tools/index.html">
-          <div class="category-icon">
-            <!-- hand-drawn tools/wrench doodle -->
-            <svg viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M44 12 C38 12 33 17 33 23 C33 25 34 27 34 27 L16 45 C14 47 14 50 16 52 C18 54 21 54 23 52 L41 34 C41 34 43 35 45 35 C51 35 56 30 56 24 C56 22 55 20 54 18 L48 24 L44 20 L50 14 C48 13 46 12 44 12Z" stroke="#3D3221" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="19" cy="49" r="2" stroke="#3D3221" stroke-width="1.3" fill="none"/>
-              <path d="M28 20 L24 16" stroke="#3D3221" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
-              <path d="M54 42 L50 46 L54 50 L58 46 Z" stroke="#3D3221" stroke-width="1.3" fill="none" stroke-linejoin="round" opacity="0.5"/>
-            </svg>
-          </div>
-          <h3>Tools</h3>
-          <p>Open-source security and infrastructure tools built for real-world use.</p>
-          <span class="category-arrow">Explore tools →</span>
-        </a>
-      </div>
-    </div>
-
-    <a class="bounce-arrow" href="#experience">
-      <span>Experience</span>
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="6 9 12 15 18 9"/>
-      </svg>
-    </a>
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ───── EXPERIENCE ───── -->
-  <section id="experience">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Background</span>
-        <h2>Experience</h2>
-      </div>
-
-      <div class="experience-card">
-        <p class="exp-role">IT Support &amp; Training Assistant</p>
-        <p class="exp-org">Arafat Computer Academy</p>
-        <ul class="exp-list">
-          <li>Provided first-line technical support by troubleshooting hardware, software, and connectivity issues.</li>
-          <li>Installed, configured, and maintained Windows-based systems and essential software applications.</li>
-          <li>Assisted users with login issues, password resets, and basic account administration tasks.</li>
-          <li>Performed routine system maintenance, updates, and performance optimization to reduce downtime.</li>
-          <li>Diagnosed and resolved printer, peripheral, and local network connectivity issues.</li>
-          <li>Maintained accurate documentation of technical issues, resolutions, and system changes.</li>
-          <li>Delivered hands-on training on computer fundamentals, internet safety, and system troubleshooting.</li>
-        </ul>
-      </div>
-    </div>
-
-    <a class="bounce-arrow" href="#academic">
-      <span>Academic Background</span>
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="6 9 12 15 18 9"/>
-      </svg>
-    </a>
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ───── ACADEMIC ───── -->
-  <section id="academic">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Education</span>
-        <h2>Academic Background</h2>
-      </div>
-
-      <div class="academic-grid">
-        <div class="academic-card">
-          <p class="academic-degree">M.Sc. Analytical Chemistry</p>
-          <p class="academic-school">University of Lagos, Lagos, Nigeria</p>
-          <span class="academic-grade">CGPA 5.00 / 5.00 — Distinction</span>
-          <ul class="academic-awards">
-            <li>Award of Best Graduating Masters Student</li>
-          </ul>
+    <!-- About / Specialties Section -->
+    <section id="specialties">
+        <h2 class="section-title">Core Specialties</h2>
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>Cybersecurity & Systems</h3>
+                <p>Configuring and auditing systems using virtual machines, network scanning, and terminal utilities. Focused on network vulnerability mitigation, directory control, and general hardware/software security frameworks.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-server"></i></div>
+                <h3>IT Infrastructure & Administration</h3>
+                <p>Designing, building, and deploying networks and technical equipment. Experienced in handling software compliance, diagnostic services, and server setups for commercial operations.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-compass-drafting"></i></div>
+                <h3>Graphic Design & Brand Asset Creation</h3>
+                <p>Crafting polished design work, from comprehensive brand templates to professional flyers, publications, and presentations. Utilizing Adobe Photoshop and Canva to align tech architecture with striking visual identities.</p>
+            </div>
         </div>
 
-        <div class="academic-card">
-          <p class="academic-degree">B.Sc. Applied Chemistry</p>
-          <p class="academic-school">Usmanu Danfodiyo University, Sokoto, Nigeria</p>
-          <span class="academic-grade">CGPA 4.29 / 5.00</span>
-          <ul class="academic-awards">
-            <li>Best Graduating Student in Organic Chemistry</li>
-            <li>Best Graduating Student in Analytical Chemistry</li>
-            <li>Third Best Graduating Student in Physical Chemistry</li>
-          </ul>
+        <!-- Tech Matrix -->
+        <div class="skills-section">
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Security & Network</h4>
+                    <div class="skill-tags">
+                        <span class="tag">Linux Terminal</span>
+                        <span class="tag">Vulnerability Auditing</span>
+                        <span class="tag">Nmap & WireShark</span>
+                        <span class="tag">Network Hardening</span>
+                        <span class="tag">VMware / VirtualBox</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Systems & IT</h4>
+                    <div class="skill-tags">
+                        <span class="tag">Active Directory</span>
+                        <span class="tag">Windows/Linux Admin</span>
+                        <span class="tag">IT Diagnostic Support</span>
+                        <span class="tag">Infrastructure Audits</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Design & Media</h4>
+                    <div class="skill-tags">
+                        <span class="tag">Adobe Photoshop</span>
+                        <span class="tag">Canva Advanced</span>
+                        <span class="tag">Brand Asset Creation</span>
+                        <span class="tag">Typography & Layout</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+    </section>
 
-    <a class="bounce-arrow" href="#certificates">
-      <span>Certificates</span>
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="6 9 12 15 18 9"/>
-      </svg>
-    </a>
-  </section>
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Selected Projects & Highlights</h2>
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon-large"><i class="fa-solid fa-terminal"></i></div>
+                </div>
+                <div class="project-body">
+                    <div class="project-tech">
+                        <span>Linux</span>
+                        <span>Bash</span>
+                        <span>Virtualization</span>
+                    </div>
+                    <h3>Security Lab & Network Audit</h3>
+                    <p>Designed and hosted a closed virtual lab to execute safe vulnerability scans. Created shell scripts to automate basic log auditing and monitor local port configurations.</p>
+                    <a href="https://github.com/CalebbbSec" target="_blank" class="project-link">View Repo <i class="fa-solid fa-up-right-from-square"></i></a>
+                </div>
+            </div>
 
-  <hr class="section-divider" />
-
-  <!-- ───── CERTIFICATES ───── -->
-  <section id="certificates">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Achievements</span>
-        <h2>Certificates</h2>
-      </div>
-
-      <div class="certs-card">
-        <div class="certs-text">
-          <h3>Certificate Library</h3>
-          <p>A full collection of cybersecurity, cloud, and AI-related certifications and course completions.</p>
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon-large"><i class="fa-solid fa-bezier-curve"></i></div>
+                </div>
+                <div class="project-body">
+                    <div class="project-tech">
+                        <span>Photoshop</span>
+                        <span>Canva</span>
+                        <span>Design Assets</span>
+                    </div>
+                    <h3>Brand Asset Suite</h3>
+                    <p>Designed unified media standards and customizable templates to keep company communication highly visually coherent. Developed layout kits and dynamic presentation elements.</p>
+                    <a href="https://github.com/CalebbbSec" target="_blank" class="project-link">View Designs <i class="fa-solid fa-up-right-from-square"></i></a>
+                </div>
+            </div>
         </div>
-        <a class="btn btn-primary" href="https://kizerh.notion.site/24cb325e196c813184fdd7e706d9e4a3?v=24cb325e196c817cb857000c7c1e0007&source=copy_link" target="_blank" rel="noopener">
-          <i class="fas fa-arrow-up-right-from-square"></i> Open Library
-        </a>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ───── FOOTER ───── -->
-  <footer>
-    <div class="container">
-      <p>© 2025 Abdulhamid Salihu &nbsp;·&nbsp;
-        <a href="mailto:abdulhameedi.ah492@gmail.com">abdulhameedi.ah492@gmail.com</a>
-      </p>
-    </div>
-  </footer>
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-box">
+            <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 15px;">Let's Connect</h2>
+            <p>I am always open to exploring new technical opportunities, security operations, and creative collaborations. Drop me a line!</p>
+            <div class="social-icons">
+                <a href="https://github.com/CalebbbSec" target="_blank" class="social-btn"><i class="fa-brands fa-github"></i></a>
+                <!-- You can update the LinkedIn link once yours is ready -->
+                <a href="#" target="_blank" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <!-- You can update your contact email here -->
+                <a href="mailto:your.email@example.com" class="social-btn"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
 
-  <!-- ───── TYPEWRITER SCRIPT ───── -->
-  <script>
-    (function () {
-      const el     = document.getElementById('heroName');
-      const cursor = document.getElementById('twCursor');
-
-      // Two-phase text: phase 1 = "Hi", pause, phase 2 = ", I'm Abdulhamid"
-      const phase1 = "Hi";
-      const phase2 = ", I'm Abdulhamid";
-      const SPEED        = 72;   // ms per character
-      const PAUSE_AFTER1 = 520;  // pause after "Hi" before continuing
-      const CURSOR_LINGER = 1400; // how long cursor stays after finish
-
-      let textNode = document.createTextNode('');
-      // Insert text node BEFORE the cursor span
-      el.insertBefore(textNode, cursor);
-
-      function typeChars(str, done) {
-        let i = 0;
-        function next() {
-          if (i < str.length) {
-            textNode.nodeValue += str[i++];
-            setTimeout(next, SPEED + Math.random() * 28); // tiny jitter for realism
-          } else {
-            done && done();
-          }
-        }
-        next();
-      }
-
-      // After the full name is typed, add the hand-underline span around "Abdulhamid"
-      function wrapUnderline() {
-        const full = textNode.nodeValue; // "Hi, I'm Abdulhamid"
-        const idx  = full.indexOf('Abdulhamid');
-        if (idx === -1) return;
-
-        const before = full.slice(0, idx);          // "Hi, I'm "
-        const name   = full.slice(idx);             // "Abdulhamid"
-
-        // Replace plain text node with: textBefore + <span> + cursor
-        textNode.nodeValue = before;
-
-        const span = document.createElement('span');
-        span.className = 'hand-underline';
-        span.textContent = name;
-        el.insertBefore(span, cursor);
-      }
-
-      // Kick off after a short initial delay (avatar fade-in feels better first)
-      setTimeout(function () {
-        typeChars(phase1, function () {
-          setTimeout(function () {
-            typeChars(phase2, function () {
-              // Wrap "Abdulhamid" in underline span
-              setTimeout(function () {
-                wrapUnderline();
-                // Reveal tagline and contacts
-                document.querySelector('.hero-tagline').classList.add('visible');
-                document.querySelector('.hero-contacts').classList.add('visible');
-                // Remove cursor after linger
-                setTimeout(function () {
-                  cursor.style.animation = 'none';
-                  cursor.style.opacity   = '0';
-                }, CURSOR_LINGER);
-              }, 80);
-            });
-          }, PAUSE_AFTER1);
-        });
-      }, 600);
-    })();
-  </script>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Caleb Adelaja. Managed on GitHub Pages.</p>
+    </footer>
 
 </body>
 </html>
