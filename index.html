@@ -6,19 +6,9 @@
     <meta name="description" content="Caleb Adelaja — IT Analyst & Cybersecurity Professional. Systems security, IT infrastructure, and brand design.">
     <title>Caleb Adelaja | Portfolio</title>
 
-    <!-- Font preconnects: warms up the connection before the CSS request is even parsed -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Only the weights actually used in the CSS below are requested (was 6 weight files, now 5, with correct matches so no synthetic/faux-bold rendering) -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;800&display=swap" rel="stylesheet">
-
-    <!--
-      FontAwesome has been removed entirely.
-      It cost this page a render-blocking external stylesheet + a webfont file
-      (typically 70-200KB combined) just to show ~11 icons. Those icons are now
-      inlined below as a tiny SVG sprite (a few hundred bytes, no extra network
-      request, no render-blocking, no flash-of-missing-icon).
-    -->
 
     <style>
         :root {
@@ -415,6 +405,35 @@
             color: var(--primary);
         }
 
+        /* NEW: Standalone Certifications Section */
+        .cert-card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 50px 40px;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            transition: all 0.3s;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 230, 118, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cert-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .cert-card p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
         /* Contact Section */
         .contact {
             text-align: center;
@@ -487,15 +506,13 @@
                 font-size: 2.8rem;
             }
             .nav-links {
-                display: none; /* Can be expanded with JS for mobile menu */
+                display: none; 
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Inline icon sprite: replaces the entire FontAwesome CSS + webfont download.
-         Hidden, zero extra network requests, renders instantly. -->
     <svg style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true">
         <defs>
             <symbol id="icon-arrow-right" viewBox="0 0 24 24">
@@ -555,11 +572,10 @@
         </defs>
     </svg>
 
-    <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <a href="#" class="logo">caleb.sh</a>
-           <ul class="nav-links">
+            <ul class="nav-links">
                 <li><a href="#specialties">Specialties</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#certifications">Certifications</a></li>
@@ -568,7 +584,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <header class="hero">
         <div class="hero-grid">
             <div class="hero-text">
@@ -583,7 +598,6 @@
                 </div>
             </div>
             
-            <!-- Terminal Widget -->
             <div class="terminal">
                 <div class="terminal-header">
                     <div class="circle red"></div>
@@ -606,7 +620,6 @@
         </div>
     </header>
 
-    <!-- About / Specialties Section -->
     <section id="specialties">
         <h2 class="section-title">Core Specialties</h2>
         <div class="grid-3">
@@ -627,7 +640,6 @@
             </div>
         </div>
 
-        <!-- Tech Matrix -->
         <div class="skills-section">
             <div class="skills-grid">
                 <div class="skill-category">
@@ -662,11 +674,9 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects">
         <h2 class="section-title">Selected Projects & Highlights</h2>
         <div class="projects-grid">
-            <!-- Project 1 -->
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-icon-large"><svg class="icon" aria-hidden="true"><use href="#icon-terminal"></use></svg></div>
@@ -683,7 +693,6 @@
                 </div>
             </div>
 
-            <!-- Project 2 -->
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-icon-large"><svg class="icon" aria-hidden="true"><use href="#icon-bezier"></use></svg></div>
@@ -699,42 +708,42 @@
                     <a href="https://github.com/CalebbbSec" target="_blank" rel="noopener" class="project-link">View Designs <svg class="icon" aria-hidden="true"><use href="#icon-external"></use></svg></a>
                 </div>
             </div>
-
-            <!-- Project 3: Certifications -->
-            <div class="project-card" id="certifications">
-                <div class="project-header">
-                    <div class="project-icon-large"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg></div>
-                </div>
-                <div class="project-body">
-                    <div class="project-tech">
-                        <span>Security</span>
-                        <span>IT Systems</span>
-                        <span>Verified</span>
-                    </div>
-                    <h3>Professional Certifications</h3>
-                    <p>A live, verified archive of my technical certifications, cybersecurity training, and industry credentials hosted on Notion.</p>
-                    <a href="https://app.notion.com/p/Professional-Certifications-4d9bbbcd121346919f3ae71bf6c2bc70" target="_blank" rel="noopener" class="project-link">View Certifications <svg class="icon" aria-hidden="true"><use href="#icon-external"></use></svg></a>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <section id="certifications">
+        <h2 class="section-title">Certifications</h2>
+        <div class="cert-card">
+            <div class="project-icon-large" style="margin-bottom: 20px;">
+                <svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg>
+            </div>
+            <h3>Professional Credentials</h3>
+            <p>A live, verified archive of my technical certifications, cybersecurity training, and industry credentials hosted on Notion.</p>
+            
+            <div class="project-tech" style="justify-content: center; margin-bottom: 25px;">
+                <span>Security</span>
+                <span>IT Systems</span>
+                <span>Verified</span>
+            </div>
+            
+            <a href="https://app.notion.com/p/Professional-Certifications-4d9bbbcd121346919f3ae71bf6c2bc70" target="_blank" rel="noopener" class="btn btn-secondary">
+                View Certifications <svg class="icon" aria-hidden="true"><use href="#icon-external"></use></svg>
+            </a>
+        </div>
+    </section>
+
     <section id="contact" class="contact">
         <div class="contact-box">
             <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 15px;">Let's Connect</h2>
             <p>I am always open to exploring new technical opportunities, security operations, and creative collaborations. Drop me a line!</p>
             <div class="social-icons">
                 <a href="https://github.com/CalebbbSec" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><svg class="icon" aria-hidden="true"><use href="#icon-code"></use></svg></a>
-                <!-- You can update the LinkedIn link once yours is ready -->
                 <a href="#" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="#icon-briefcase"></use></svg></a>
-                <!-- You can update your contact email here -->
                 <a href="mailto:your.email@example.com" class="social-btn" aria-label="Email"><svg class="icon" aria-hidden="true"><use href="#icon-envelope"></use></svg></a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Caleb Adelaja. Managed on GitHub Pages.</p>
     </footer>
